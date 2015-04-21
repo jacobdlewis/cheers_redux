@@ -5,4 +5,9 @@ args = ARGV
 
 if args == []
   print "I'd cheer for you, if only I knew who you were :(\nTry again, but this time type './cheers [Name] [MM/DD Birthday]'\n"
+else
+  args.each do |i|
+    puts i.to_s
+  end
 end
+
