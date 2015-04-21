@@ -56,12 +56,14 @@ The program then outputs the number of days until the user's birthday
 
 
 #### Help Usage
-If no input is given to the program, the following should print out.
+If no input is given to the program, the following should print out:
 
-Try again, but this time type "./cheers.rb [Name] [MM/DD Birthday]"
+>I'd cheer for you, if only I knew who you were :(
+>
+>Try again, but this time type "./cheers [Name] [MM/DD Birthday]"
 
 #### Regular Usage
-Start the program by running './cheers.rb Abby 08/25'
+Start the program by running './cheers Abby 08/25'
 
 The first argument is the user's name.
 The second argument is the user's birthday.

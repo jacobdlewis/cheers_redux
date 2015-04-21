@@ -4,12 +4,12 @@ require 'minitest/autorun'
 
 class TestCheersIntegration < MiniTest::Test
 
-  def test_that_the_tests_run
-    assert_equal true, false
+  def test_running_file_without_input
+    output = `./cheers`
+    expected = <<END
+I'd cheer for you, if only I knew who you were :(
+Try again, but this time type './cheers [Name] [MM/DD Birthday]'
+END
+assert_equal output, expected
   end
-
-  def test_that_two_plus_two_equals_four
-    assert_equal 2+2, 4
-  end
-
 end
