@@ -1,13 +1,79 @@
 #!/usr/bin/env ruby
+  require 'date'
+  args = ARGV
+ Default_Error_Msg = <<END
+I'd cheer for you, if only I knew who you were :(
+Try again, but this time type './cheers [Name] [MM/DD Birthday]'
+END
 
 
-args = ARGV
-
-if args == []
-  print "I'd cheer for you, if only I knew who you were :(\nTry again, but this time type './cheers [Name] [MM/DD Birthday]'\n"
-else
-  args.each do |i|
-    puts i.to_s
+  def validate_name(argument)
+    if argument.nil? || argument == ""
+      false
+    elsif argument.match(/[^a-zA-Z\-]/) != nil
+      false
+    else
+      return true
+    end
   end
-end
+
+  def can_parse?(argument)
+    begin
+      Date.parse(argument, '%m/%d')
+    rescue
+      false
+    end
+  end
+
+  def validate_date(argument)
+    if argument.length > 6
+      false
+    elsif argument.match(/[^0-9\/]/).nil? == false
+      false
+    elsif can_parse?(argument) == false
+      false
+    else
+      true
+    end
+  end
+
+  def cheer_name(argument)
+    original_name = argument
+    name = original_name.gsub(/[^\w]/, "").dup.upcase
+    an_letters = "AEFHILMNORSX"
+    name.each_char do |letter|
+      article = an_letters.include?(letter) ? "an" : "a"
+      puts "Give me #{article}... #{letter.upcase}!"
+    end
+      puts "\n#{original_name}'s just GRAND!"
+  end
+
+  def happy_bday(argument)
+    bday = argument
+    bday_yday = Date.strptime(bday, '%m/%d').yday
+    today_yday = Date.today.yday
+    if bday_yday < today_yday
+      bday_yday =+ 365
+    end
+    print "\nAwesome! Your birthday is in #{bday_yday - today_yday} days! Happy Birthday in advance!\n"
+  end
+
+
+  if args.length == 1
+    if validate_name(args[0]) == true
+      cheer_name(args[0])
+    else
+      print Default_Error_Msg
+    end
+  elsif args.length == 2
+    if validate_name(args[0]) && validate_date(args[1])
+      cheer_name(args[0])
+      happy_bday(args[1])
+    else
+      print Default_Error_Msg
+    end
+  else
+    print Default_Error_Msg
+  end
+
 

@@ -14,10 +14,11 @@ assert_equal expected, output
   def test_one_valid_arg_name
     output =  `./cheers Jake`
     expected = <<END
-Give me an... J!
-Give me a... A!
+Give me a... J!
+Give me an... A!
 Give me a... K!
-Give me a... E!
+Give me an... E!
+
 Jake's just GRAND!
 END
     assert_equal expected, output
@@ -26,13 +27,13 @@ END
   def test_one_valid_arg_name_with_hyphens
     output =  `./cheers Jake-Sue`
     expected = <<END
-Give me an... J!
-Give me a... A!
+Give me a... J!
+Give me an... A!
 Give me a... K!
-Give me a... E!
-Give me a... S!
+Give me an... E!
+Give me an... S!
 Give me a... U!
-Give me a... E!
+Give me an... E!
 
 Jake-Sue's just GRAND!
 END
@@ -83,6 +84,7 @@ Give me an... A!
 Give me a... B!
 Give me a... B!
 Give me a... Y!
+
 Abby's just GRAND!
 
 Awesome! Your birthday is in 125 days! Happy Birthday in advance!
@@ -97,6 +99,7 @@ Give me an... A!
 Give me a... B!
 Give me a... B!
 Give me a... Y!
+
 Abby's just GRAND!
 
 Awesome! Your birthday is in 125 days! Happy Birthday in advance!
@@ -111,6 +114,7 @@ Give me an... A!
 Give me a... B!
 Give me a... B!
 Give me a... Y!
+
 Abby's just GRAND!
 
 Awesome! Your birthday is in 125 days! Happy Birthday in advance!
@@ -137,7 +141,7 @@ END
   end
 
   def test_two_args_invalid_and_invalid
-    output = `./cheers Jer3m1 zz/zz`
+    output = `./cheers Jer3m*1 zz/zz`
     expected = <<END
 I'd cheer for you, if only I knew who you were :(
 Try again, but this time type './cheers [Name] [MM/DD Birthday]'
